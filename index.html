@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .cal-wrapper{
+            width: 80%;
+            height: 300px;
+            margin: 130px auto 10px;
+            border-radius: 10px;
+        }
+        .display-section{
+            height: 60px;
+            background-color: black;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .display-section span{
+            margin-right: 20px;
+            font-size: 20px;
+        }
+        .control-section{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            align-items: center;
+            height: 50px;
+            background-color: rgb(209, 195, 195);
+        }
+        .control-section button{
+            background-color: rgb(209, 195, 195);
+            height: 50px;
+            border: none;
+            border-right: 1px solid black;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .main-section{
+            display: flex;
+            height: 190px;
+            background-color: white;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .number-section{
+            flex: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .number-section button{
+            font-weight: bold;
+        }
+        .equal-to{
+            background-color: orangered;
+            flex: .65;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            font-weight: bold;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="cal-wrapper">
+        <div class="display-section">
+            <span>0</span>
+        </div>
+
+        <div class="control-section">
+            <button class="add control">
+                +
+            </button>
+            <button class="subtract control">
+               -
+            </button>
+            <button class="multiply control">
+               x
+            </button>
+            <button class="divide control">
+               /
+            </button>
+        </div>
+
+       <div class="main-section">
+            <div class="number-section">
+                <button class="number">
+                    7
+                </button>
+                <button class="number">8</button>
+                <button class="number">9</button>
+                <button class="number">4</button>
+                <button class="number">5</button>
+                <button class="number">6</button>
+                <button class="number">1</button>
+                <button class="number">2</button>
+                <button class="number">3</button>
+                <button class="number">0</button>
+                <button class="number">.</button>
+                <button class="number cancel">AC</button>
+            </div>
+            <div class="equal-to">
+                =
+               <!-- <span>=</span> -->
+            </div>
+       </div>
+    </div>
+
+    <script>
+        const numbers = document.querySelectorAll(".number");
+        const output = document.querySelector(".display-section span");
+        const controls = document.querySelectorAll(".control");
+        const cancel = document.querySelector(".cancel");
+        const equalTo = document.querySelector(".equal-to");
+        // the numbers and control should display on press
+        // once = is pressed, step one should move up
+        // and answer should be displayed underneath.
+        // let it handle multiple point values
+
+        var input = [];
+        var action =[];
+        var active = 1;
+
+        numbers.forEach((number)=>{
+            number.addEventListener("click",()=>{
+                var e =event.target.innerText;
+                input.push(e);
+               for(var x =0; x < input.length; x++){
+                  output.textContent=  input[x]
+               }  
+            })
+        });
+
+             
+        controls.forEach((control)=>{
+            control.addEventListener("click",()=>{
+                var a =event.target.innerText;
+                action.push(a);
+                for(var x =0; x < action.length; x++){
+                  output.textContent=  action[x]
+               }  
+            })
+        });
+
+        equalTo.addEventListener("click",(e)=>{
+            equals= event.target.innerText;
+            output.textContent = equals;
+            calculate(action,input);
+        })
+
+        cancel.addEventListener("click",()=>{
+            active= 0;
+            output.textContent = "0";
+            input=[];
+            action =[];
+        })
+
+        const calculate=(action,input)=>{
+            console.log(input);
+            for(var x; x < input.length;x++){
+                console.log(input[x]);
+            }
+           console.log(action);
+           for(var y; y < action.length;y++){
+                console.log(action[x]);
+            }
+        //    var total= ';'
+           output.textContent = "0";
+           input.length=0;
+           action.length=0;
+           console.log("goodluck!")
+        }
+    </script>
+</body>
+</html>
